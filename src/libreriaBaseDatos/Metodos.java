@@ -2,6 +2,7 @@ package libreriaBaseDatos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -23,5 +24,18 @@ public Connection Conectar(String url,String user,String password){
             Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return connect;
+}
+
+public void insert(String tabla, String datos) {
+    
+        PreparedStatement pst;
+        try {
+            pst = connect.prepareStatement("insert into " + tabla + " values(" + datos + ")");
+            pst.execute();
+            System.out.println("Inserción realizada");
+        } catch (SQLException ex) {
+            Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
 }
 }
