@@ -38,4 +38,17 @@ public void insert(String tabla, String datos) {
         }
 
 }
+
+public void delete(String tabla, int primaryKey) {
+    
+        PreparedStatement pst;
+        try {
+            pst = connect.prepareStatement("delete from " + tabla + " where id=" + primaryKey);
+            pst.execute();
+            System.out.println("eliminado");
+        } catch (SQLException ex) {
+            Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
