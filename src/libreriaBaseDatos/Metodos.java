@@ -74,4 +74,14 @@ public ResultSet consultar(String tabla, String campo, int columna){
         return rs;
     }
 
+public void actualizar(String tabla, String campo, String campoActualizado, int primaryKey) {
+        PreparedStatement pst;
+        try {
+            pst = connect.prepareStatement("update " + tabla + " set " + campo + "=" + campoActualizado + " where .id=" + primaryKey);
+            pst.execute();
+            System.out.println("Se ha actualizado");
+        } catch (SQLException ex) {
+            Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
