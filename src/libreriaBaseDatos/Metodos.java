@@ -84,4 +84,13 @@ public void actualizar(String tabla, String campo, String campoActualizado, int 
             Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+public void desconectar() {
+        try {
+            connect.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }
+
