@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,6 +50,28 @@ public void delete(String tabla, int primaryKey) {
         } catch (SQLException ex) {
             Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+public ResultSet consultar(String tabla, String campo, int columna){
+    
+       Statement st;
+       String[]datos= new String[columna];
+       
+        try {
+            st= connect.createStatement();
+            rs=st.executeQuery("select "+campo+" from "+tabla);  
+        while(rs.next()){
+   
+            for (int i=0; i<datos.length; i++) {
+                datos[i]=rs.getString(i+1);
+                 System.out.println(i);       
+            }
+        } 
+        
+        }catch (SQLException ex) {
+            Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
     }
 
 }
