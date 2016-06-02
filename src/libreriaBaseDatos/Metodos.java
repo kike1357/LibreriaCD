@@ -14,7 +14,14 @@ public class Metodos {
     
      Connection connect = null;
      ResultSet rs = null;
-
+     
+/**
+     * Se usa para conectar la base de datos con nuestro programa
+     * 
+     * @param url el nombre de nuestra base de datos y donde está alojada
+     * @param user nombre de usuario con el que accedemos a nuestra base de datos
+     * @param password contraseña que tiene el usuario para acceder a la base
+     */ 
 public Connection Conectar(String url,String user,String password){
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -27,6 +34,12 @@ public Connection Conectar(String url,String user,String password){
         return connect;
 }
 
+/**
+     * Utilizado para insertar registros en la tabla
+     * 
+     * @param tabla Nombre de nuestra tabla en donde se insertan los datos
+     * @param datos Los valores que se insertan en la tabla
+     */
 public void insert(String tabla, String datos) {
     
         PreparedStatement pst;
@@ -40,6 +53,12 @@ public void insert(String tabla, String datos) {
 
 }
 
+/**
+     * Elimina un registro insertado en la tabla
+     * 
+     * @param tabla Nombre de la tabla en donde queremos que se elimine el registro que introduccimos
+     * @param primaryKey Número que identifica a la fila
+     */
 public void delete(String tabla, int primaryKey) {
     
         PreparedStatement pst;
@@ -52,6 +71,13 @@ public void delete(String tabla, int primaryKey) {
         }
     }
 
+/**
+     * Muestra la información registrada en la tabla
+     * 
+     * @param tabla es el nombre de nuestra tabla
+     * @param campos muestra los campos a consultar
+     * @param columna nombre de la columna
+     */
 public ResultSet consultar(String tabla, String campo, int columna){
     
        Statement st;
@@ -74,6 +100,14 @@ public ResultSet consultar(String tabla, String campo, int columna){
         return rs;
     }
 
+/**
+     * Sirve para actualizar un campo que ya teniamos introducido
+     *
+     * @param tabla Nombre de nuestra tabla donde se va a actualizar el registro ya introducido
+     * @param campo Nombre del registro a actualizar
+     * @param campoActualizado Nombre del campo actualizado
+     * @param primaryKey El valor que identifica a la fila
+     */
 public void actualizar(String tabla, String campo, String campoActualizado, int primaryKey) {
         PreparedStatement pst;
         try {
@@ -85,6 +119,9 @@ public void actualizar(String tabla, String campo, String campoActualizado, int 
         }
     }
 
+/**
+     * cierra la conexion del programa con la base de datos
+     */
 public void desconectar() {
         try {
             connect.close();
